@@ -10,13 +10,23 @@ function brains(z){
 		break;
 
 		case "spotify-this-song":
-		var song = parseThat()
-		spotify(song)
+		if (!process.argv[3]){
+			var song = "the+sign"
+			spotify(song)
+		} else {
+			var song = parseThat()
+			spotify(song) 
+		}
 		break;
 
 		case "movie-this":
-		var movie = parseThat()
-		omdb(movie)
+		if (!process.argv[3]){
+			var movie = "mr+nobody+"
+			omdb(movie)
+		} else{
+			var movie = parseThat()
+			omdb(movie)
+		}
 		break;
 
 		case "do-what-it-says":
@@ -39,7 +49,6 @@ function twitter(){
 }
 
 function omdb(mov){
-	var mov = parseThat();
 	var request = require("request");
 	request("http://www.omdbapi.com/?t=" + mov + "&y=&plot=short&r=json&tomatoes=true", function(error, response, body) {
   		if (!error && response.statusCode === 200) {
@@ -113,12 +122,6 @@ function readMe(){
 	// }
 	})
 }
-// Make a .gitignore file and add the following lines to it.
-// node_modules
-// .DS_Store
-// Make a JavaScript file named keys.js. Do Not add this file to the .gitignore. This would be a good thing to do in the real world, but it makes grading this assignment a challenge.
-
-
 // node liri.js my-tweets
 // This will show your last 20 tweets and when they were created at in your terminal/bash window.
 
